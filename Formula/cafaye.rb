@@ -12,6 +12,12 @@ class Cafaye < Formula
     system "go", "build", *std_go_args(ldflags: "-s -w"), "."
   end
 
+  def post_install
+    system bin/"cafaye", "skills", "install"
+  rescue StandardError
+    opoo "Could not auto-install Cafaye skill; run `cafaye skills install` manually."
+  end
+
   test do
     assert_match "cafaye", shell_output("#{bin}/cafaye --help")
   end
