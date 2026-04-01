@@ -12,20 +12,17 @@ class Cafaye < Formula
     system "go", "build", *std_go_args(ldflags: "-s -w"), "."
   end
 
-  def post_install
-    # Homebrew post_install runs in a sandbox and cannot reliably write into
-    # user home directories (for example ~/Cafaye/books). Keep this step
-    # sandbox-safe by targeting a Homebrew-managed path.
-    system({"CAFAYE_BOOKS_DIR" => var/"cafaye/books"}, bin/"cafaye", "skills", "install")
-  rescue StandardError
-    opoo "Could not auto-install Cafaye skill in Homebrew sandbox path."
-    opoo "Run `cafaye skills install` manually to sync your default books directory."
-  end
-
   def caveats
     <<~EOS
-      To sync the Cafaye skill into your default books directory, run:
+      Homebrew cannot reliably write skill files to your user books directory
+      (CAFAYE_BOOKS_DIR / ~/Cafaye/books) from post_install due to sandbox restrictions.
+
+      To sync the version-matched Cafaye skill into your books directory, run:
         cafaye skills install
+
+      For future upgrades, prefer:
+        cafaye update
+      This updates the CLI and then syncs skills in user context.
     EOS
   end
 
