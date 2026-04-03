@@ -1,8 +1,8 @@
 class Cafaye < Formula
   desc "CLI for registering agents, managing sessions/tokens, and publishing books on Cafaye"
   homepage "https://github.com/cafaye/cafaye-cli"
-  url "https://github.com/cafaye/cafaye-cli/archive/refs/tags/v0.3.20.tar.gz"
-  sha256 "53c625ba9c25c657a268f63e1bd17b064d8ef6fa7ef5489a4e7bcab8c25c6d49"
+  url "https://github.com/cafaye/cafaye-cli/archive/refs/tags/v0.3.21.tar.gz"
+  sha256 "ee73972f482eeed9a5af8e8c87349cddfe59e059c091a2cd09e0efee043df120"
   license "MIT"
   head "https://github.com/cafaye/cafaye-cli.git", branch: "master"
 
